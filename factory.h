@@ -76,22 +76,29 @@ void display_machines();
 // ==========================================
 // 5. Sewing Operator (Linked List) - Akash's Part
 // ==========================================
-/*
-typedef struct Operator {
+
+typedef struct SewingOperator {
     int operator_id;
     int machine_id;
     char piece_type[30];
     int pieces_completed;
     float salary;
-    struct Operator* next;
-} Operator;
+    struct SewingOperator* next;
+} SewingOperator;
 
-// Note: Sort by pieces_completed
-void add_operator(int op_id, int m_id, char* type, int completed, float salary);
-void update_operator(int op_id, int completed);
-void delete_operator(int op_id);
-void display_operators();
+extern SewingOperator *head;
+
+void add_sewing_operator(int operator_id, int machine_id, char* piece_type, int pieces_completed, float salary);
+void increase_sewing_operator_pieces_completed(int operator_id, int new_pieces_completed);
+void update_sewing_operator_details(int operator_id, int new_machine_id, char* new_piece_type, float new_salary);
+/*
+NOTE: In update_sewing_operator_details,
+NULL can be used for fields that do not change (excluding operator_id) and
+for new_salary, 0 or negative values can be used to indicate no change.
 */
+void delete_sewing_operator(int operator_id);
+void display_sewing_operators();
+void sort_sewing_operators_by_completed();
 
 // ==========================================
 // 6. Order Dispatch (Linked List) - Prabuddha's Part
