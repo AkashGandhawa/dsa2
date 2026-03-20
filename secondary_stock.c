@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "factory.h"
 
 // 1. Add an item to the end of the DLL
@@ -53,21 +50,15 @@ void delete_secondary_item(char* mat) {
 
     while (temp != NULL) {
         if (strcmp(temp->material_type, mat) == 0) {
-            // Case A: Deleting the very first node (head)
             if (temp == secondary_head) {
                 secondary_head = temp->next;
             }
-
-            // Case B: If there is a node after this one, update its 'prev' pointer
             if (temp->next != NULL) {
                 temp->next->prev = temp->prev;
             }
-
-            // Case C: If there is a node before this one, update its 'next' pointer
             if (temp->prev != NULL) {
                 temp->prev->next = temp->next;
             }
-
             free(temp);
             printf("\n[SUCCESS] Material '%s' removed from Secondary Stock.\n", mat);
             return;
