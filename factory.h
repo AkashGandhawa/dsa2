@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 // ==========================================
 // 1. Receiving Dock (Queue) - Themiya's Part
@@ -121,7 +122,7 @@ void sort_sewing_operators_by_completed();
 // ==========================================
 // 6. Order Dispatch (Linked List) - Prabuddha's Part
 // ==========================================
-/*
+
 typedef struct Order {
     int order_id;
     char receiver[50];
@@ -142,7 +143,7 @@ void display_orders();
 // ==========================================
 // 7. Security (Array) - Yasiru's Part
 // ==========================================
-/*
+
 #define MAX_GUARDS 50
 typedef struct {
     int guard_id;

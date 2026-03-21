@@ -17,19 +17,19 @@ Simple program that models a system of an textile manufacturing company to bette
 * Data Structure: **Doubly Linked List**
 * Main Methods: Add, Delete, Update
 * Data Elements: `{slot_no, material_type, stock_kg}`
-* Special Task: *<add task>*
+* Special Task: *add task*
 
 ### 3. Secondary Stock
 * Data Structure: **Doubly Linked List**
 * Main Methods: Add, Delete, Update
 * Data Elements: `{material_type, stock_kg}`
-* Special Task: *<add task>*
+* Special Task: *add task*
 
 ### 4. Production Floor
 * Data Structure: **Array**
 * Main Methods: Add, Delete, Update
 * Data Elements: `{machine_id, status, maintainance_req}`
-* Special Task: *<add task>*
+* Special Task: *add task*
 
 ### 5. Sewing Operator
 * Data Structure: **Linked List**
@@ -47,4 +47,4 @@ Simple program that models a system of an textile manufacturing company to bette
 * Data Structure: Array
 * Main Methods: Add, Delete, Update
 * Data Elements: `{guard_id, is_active, patrol_point, shift}`
-* Special Task: *<add task>*
+* Special Task: *add task*
