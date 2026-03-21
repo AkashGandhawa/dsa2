@@ -8,19 +8,33 @@
 // ==========================================
 // 1. Receiving Dock (Queue) - Themiya's Part
 // ==========================================
-/*
 typedef struct Truck {
     int truck_id;
+    int priority;
     char supplier[50];
     char material_type[30];
     char date[20];
     struct Truck* next;
 } Truck;
 
-void enqueue_truck(int id, char* supp, char* mat, char* date);
-void dequeue_truck();
-void display_dock();
-*/
+typedef struct Queue {
+    Truck* front;
+    Truck* rear;
+} Queue;
+
+typedef struct Group {
+    char key[50];
+    int count;
+    int* positions;
+} Group;
+
+void initialize_queue(struct Queue* queue);
+bool isEmpty(const struct Queue* queue);
+void enqueue_truck(struct Queue* queue, int id, int priority, char supplier[], char material[], char date[]);
+void dequeue_truck(struct Queue* queue);
+void display_dock(const struct Queue* queue);
+void sortByPriority(const struct Queue* queue);
+void groupBy(const struct Queue* queue, char type);
 
 // ==========================================
 // 2. Main Warehouse (DLL) - Anushka's Part
