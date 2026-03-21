@@ -1,5 +1,9 @@
 #include "factory.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
+// --- Menu Functions ---
 void show_menu()
 {
     printf("\n--- Garment Factory Management System (Group Project) ---\n");
@@ -20,12 +24,148 @@ void clear_input()
         ;
 }
 
-int main()
+// --- Case Functions ---
+void receiving_dock_menu()
 {
-    int choice, subChoice, id;
+    printf("\n--- Receiving Dock ---\n");
+    // TODO: add receiving dock menu and logic here
+    printf("Space for Themiya to add Enqueue/Dequeue logic.\n");
+    // Example call: enqueue_truck(...);
+}
+
+void warehouse_menu()
+{
+    int subChoice, id;
     char mat[30];
     float stock;
 
+    printf("\n--- Main Warehouse ---\n");
+    printf("1. Add Item\n2. Update Stock\n3. Delete Item\n4. Display\n5. Back\nChoice: ");
+    scanf("%d", &subChoice);
+
+    if (subChoice == 1)
+    {
+        printf("Slot No, Material, Stock(kg): ");
+        scanf("%d %s %f", &id, mat, &stock);
+        add_warehouse_item(id, mat, stock);
+    }
+    else if (subChoice == 2)
+    {
+        printf("Slot No, New Stock: ");
+        scanf("%d %f", &id, &stock);
+        update_warehouse_item(id, stock);
+    }
+    else if (subChoice == 3)
+    {
+        printf("Slot No: ");
+        scanf("%d", &id);
+        delete_warehouse_item(id);
+    }
+    else if (subChoice == 4)
+    {
+        display_warehouse();
+    }
+}
+
+void secondary_stock_menu()
+{
+    printf("\n--- Secondary Stock ---\n");
+    // TODO: add secondary stock menu and logic here
+    printf("Space for Sasadhara to add Add/Delete/Update logic.\n");
+}
+
+void production_floor_menu()
+{
+    printf("\n--- Production Floor ---\n");
+    // TODO: add production floor menu and logic here
+    printf("Space for Dulaksha to add Add/Delete/Update logic.\n");
+}
+
+void sewing_operator_menu()
+{
+    int subChoice;
+    printf("\n--- Sewing Operator ---\n");
+    printf("1. Add Operator\n");
+    printf("2. Increase Pieces Completed\n");
+    printf("3. Update Operator Details\n");
+    printf("4. Delete Operator\n");
+    printf("5. Display Operators\n");
+    printf("6. Sort by Pieces Completed\n");
+    printf("7. Back\n");
+    printf("Choice: ");
+    scanf("%d", &subChoice);
+
+    if (subChoice == 1)
+    {
+        int operator_id, machine_id, pieces_completed;
+        char piece_type[30];
+        float salary;
+        printf("Enter Operator ID, Machine ID, Piece Type, Pieces Completed, Salary: ");
+        scanf("%d %d %s %d %f", &operator_id, &machine_id, piece_type, &pieces_completed, &salary);
+        add_sewing_operator(operator_id, machine_id, piece_type, pieces_completed, salary);
+    }
+    else if (subChoice == 2)
+    {
+        int operator_id, new_pieces;
+        printf("Enter Operator ID and new pieces completed: ");
+        scanf("%d %d", &operator_id, &new_pieces);
+        increase_sewing_operator_pieces_completed(operator_id, new_pieces);
+    }
+    else if (subChoice == 3)
+    {
+        int operator_id, new_machine_id;
+        char new_piece_type[30];
+        float new_salary;
+        printf("Enter Operator ID: ");
+        scanf("%d", &operator_id);
+        printf("Enter new Machine ID (or -1 to skip): ");
+        scanf("%d", &new_machine_id);
+        printf("Enter new Piece Type (or '-' to skip): ");
+        scanf("%s", new_piece_type);
+        printf("Enter new Salary (or <=0 to skip): ");
+        scanf("%f", &new_salary);
+
+        if (new_machine_id == -1)
+            new_machine_id = -1; // skip
+        if (strcmp(new_piece_type, "-") == 0)
+            new_piece_type[0] = '\0'; // skip
+        update_sewing_operator_details(operator_id, new_machine_id, new_piece_type, new_salary);
+    }
+    else if (subChoice == 4)
+    {
+        int operator_id;
+        printf("Enter Operator ID to delete: ");
+        scanf("%d", &operator_id);
+        delete_sewing_operator(operator_id);
+    }
+    else if (subChoice == 5)
+    {
+        display_sewing_operators();
+    }
+    else if (subChoice == 6)
+    {
+        sort_sewing_operators_by_completed();
+    }
+}
+
+void order_dispatch_menu()
+{
+    printf("\n--- Order Dispatch ---\n");
+    // TODO: add order dispatch menu and logic here
+    printf("Space for Prabuddha to add Add/Delete/Update (Sort by priority) logic.\n");
+}
+
+void security_menu()
+{
+    printf("\n--- Security ---\n");
+    // TODO: add security guard menu and logic here
+    printf("Space for Yasiru to add Add/Delete/Update logic.\n");
+}
+
+// --- Main ---
+int main()
+{
+    int choice;
     while (1)
     {
         show_menu();
@@ -39,83 +179,30 @@ int main()
 
         switch (choice)
         {
-        case 1: // Receiving Dock - Themiya
-            printf("\n--- Receiving Dock (Placeholder) ---\n");
-            printf("Space for Themiya to add Enqueue/Dequeue logic.\n");
-            // Example call: enqueue_truck(...);
+        case 1:
+            receiving_dock_menu();
             break;
-
-        case 2: // Main Warehouse - Anushka
-            printf("\n--- Main Warehouse ---\n");
-            printf("1. Add Item\n2. Update Stock\n3. Delete Item\n4. Display\n5. Search\n6. Sort\n7. Back\nChoice: ");
-            scanf("%d", &subChoice);
-            if (subChoice == 1)
-            {
-                printf("Slot No, Material, Stock(kg): ");
-                scanf("%d %s %f", &id, mat, &stock);
-                add_warehouse_item(id, mat, stock);
-            }
-            else if (subChoice == 2)
-            {
-                printf("Slot No, New Stock: ");
-                scanf("%d %f", &id, &stock);
-                update_warehouse_item(id, stock);
-            }
-            else if (subChoice == 3)
-            {
-                printf("Slot No: ");
-                scanf("%d", &id);
-                delete_warehouse_item(id);
-            }
-            else if (subChoice == 4)
-                display_warehouse();
-            else if (subChoice == 5)
-            {
-                printf("Search query (Material or Slot No): ");
-                char query[50];
-                scanf("%s", query);
-                search_warehouse_item(query);
-            }
-            else if (subChoice == 6)
-            {
-                int criteria, order;
-                printf("Sort by: 1. Slot No | 2. Material | 3. Stock\nChoice: ");
-                scanf("%d", &criteria);
-                printf("Order: 1. Ascending | 2. Descending\nChoice: ");
-                scanf("%d", &order);
-                sort_warehouse_items(criteria, order);
-            }
+        case 2:
+            warehouse_menu();
             break;
-
-        case 3: // Secondary Stock - Sasadhara
-            printf("\n--- Secondary Stock (Placeholder) ---\n");
-            printf("Space for Sasadhara to add Add/Delete/Update logic.\n");
+        case 3:
+            secondary_stock_menu();
             break;
-
-        case 4: // Production Floor - Dulaksha
-            printf("\n--- Production Floor (Placeholder) ---\n");
-            printf("Space for Dulaksha to add Add/Delete/Update logic.\n");
+        case 4:
+            production_floor_menu();
             break;
-
-        case 5: // Sewing Operator - Akash
-            printf("\n--- Sewing Operator (Placeholder) ---\n");
-            printf("Space for Akash to add Add/Delete/Update (Sort by pieces) logic.\n");
+        case 5:
+            sewing_operator_menu();
             break;
-
-        case 6: // Order Dispatch - Prabuddha
-            printf("\n--- Order Dispatch (Placeholder) ---\n");
-            printf("Space for Prabuddha to add Add/Delete/Update (Sort by priority) logic.\n");
+        case 6:
+            order_dispatch_menu();
             break;
-
-        case 7: // Security - Yasiru
-            printf("\n--- Security (Placeholder) ---\n");
-            printf("Space for Yasiru to add Add/Delete/Update logic.\n");
+        case 7:
+            security_menu();
             break;
-
         case 0:
             printf("Exiting system...\n");
             exit(0);
-
         default:
             printf("Invalid choice. Please select 0-7.\n");
         }
