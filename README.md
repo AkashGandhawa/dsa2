@@ -9,42 +9,35 @@ Simple program that models a system of an textile manufacturing company to bette
 ## System Overview:
 ### 1. Receiving Dock
 * Data Structure: **Queue**
-* Main Methods: IsEmpty, Enqueue, Dequeue, Display
 * Data Elements: `{truck_id, priority, supplier, material_type, date}`
 * Special Task: Sorted by `priority`
 
 ### 2. Main Warehouse
 * Data Structure: **Doubly Linked List**
-* Main Methods: Add, Delete, Update
 * Data Elements: `{slot_no, material_type, stock_kg}`
 * Special Task: *add task*
 
 ### 3. Secondary Stock
 * Data Structure: **Doubly Linked List**
-* Main Methods: Add, Delete, Update
 * Data Elements: `{material_type, stock_kg}`
 * Special Task: *add task*
 
 ### 4. Production Floor
 * Data Structure: **Array**
-* Main Methods: Add, Delete, Update
 * Data Elements: `{machine_id, status, maintainance_req}`
 * Special Task: *add task*
 
 ### 5. Sewing Operator
 * Data Structure: **Linked List**
-* Main Methods: Add, Delete, Update
 * Data Elements: `{operator_id, machine_id, piece_type, pieces_completed, salary}`
 * Special Task: Sorted by `pieces_completed`
 
 ### 6. Order Dispatch
 * Data Structure: **Linked List**
-* Main Methods: Add, Delete, Update
 * Data Elements: `{order_id, receiver, priority, item, item_count, price}`
 * Special Task: Sorted by `priority`
 
 ### 7. Security
-* Data Structure: Array
-* Main Methods: Add, Delete, Update
+* Data Structure: **Array**
 * Data Elements: `{guard_id, is_active, patrol_point, shift}`
 * Special Task: *add task*

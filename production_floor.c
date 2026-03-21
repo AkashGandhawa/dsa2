@@ -1,118 +1,120 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include "factory.h"
 
-struct machine{
-    int id ;
-    char status[20];
-    int maintenance_req;
-};
-
-int insert_at( struct machine arr[],int position ,int id, char status[20] , int maintain , int size , int max )
+int insert_at(struct machine arr[], int position, int id, char status[20], int maintain, int size, int max)
 {
-    if (size >= max) {
+    if (size >= max)
+    {
         printf("Machine array overflow !");
         return size;
     }
-    if (position < 1 || position > size + 1) {
+    if (position < 1 || position > size + 1)
+    {
         printf("Invalid position !");
         return size;
     }
-    for(int i = 0; i < size; i++){
-    if(arr[i].id == id){
-        printf("Duplicate ID not allowed!\n");
-        return size;
+    for (int i = 0; i < size; i++)
+    {
+        if (arr[i].id == id)
+        {
+            printf("Duplicate ID not allowed!\n");
+            return size;
         }
     }
     struct machine temp;
     temp.id = id;
-    strcpy(temp.status , status);
+    strcpy(temp.status, status);
     temp.maintenance_req = maintain;
-    int index = position -1;
+    int index = position - 1;
 
     int i;
 
-        for(i=size-1 ; i>=index ; i-- )
-        {
-            arr[i+1] = arr[i];
-        }
-        arr[index] = temp;
+    for (i = size - 1; i >= index; i--)
+    {
+        arr[i + 1] = arr[i];
+    }
+    arr[index] = temp;
 
-
-        
     printf("Machine input successful !");
-    return size+1;
+    return size + 1;
 }
 
-int delete_by_position(struct machine arr[], int position, int size ){
-    if (position > size || position<1)
+int delete_by_position(struct machine arr[], int position, int size)
+{
+    if (position > size || position < 1)
     {
         printf("Position out of range .");
         return size;
     }
-    int index = position-1;
-    for (int i = index; i < size -1; i++)
+    int index = position - 1;
+    for (int i = index; i < size - 1; i++)
     {
-        arr[i] = arr[i+1]; 
+        arr[i] = arr[i + 1];
     }
-    size = size-1;
+    size = size - 1;
     printf("Delete Successful .");
     return size;
 }
-int delete_by_id(struct machine arr[] ,int id, int size)
+int delete_by_id(struct machine arr[], int id, int size)
 {
-    for(int i =0;i<size;i++){
-        if(id == arr[i].id){
-            for (int j = i; j < size-1; j++)
+    for (int i = 0; i < size; i++)
+    {
+        if (id == arr[i].id)
+        {
+            for (int j = i; j < size - 1; j++)
             {
-                arr[j] = arr[j+1]; 
+                arr[j] = arr[j + 1];
             }
 
             printf("Delete Successful .");
 
-            return size -1;
+            return size - 1;
         }
     }
     printf("Id not found.");
     return size;
-
 }
 
-void traverse(struct machine arr[] ,int size)
+void traverse(struct machine arr[], int size)
 {
-    for (int i=0;i<size;i++){
-        
-        printf("Machine Id : %d\n",arr[i].id);
-        printf("Machine State : %s\n",arr[i].status);
-                if (arr[i].maintenance_req == 1)
+    for (int i = 0; i < size; i++)
+    {
+
+        printf("Machine Id : %d\n", arr[i].id);
+        printf("Machine State : %s\n", arr[i].status);
+        if (arr[i].maintenance_req == 1)
         {
             printf("Machine Maintenances Requirement : Required\n");
         }
-        else{
+        else
+        {
             printf("Machine Maintenances Requirement : Not Required\n");
+        }
+        printf("\n");
     }
-    printf("\n");
-}
 }
 
-void update_by_position(struct machine arr[] ,int position, int size,char status[20] , int maintain)
+void update_by_position(struct machine arr[], int position, int size, char status[20], int maintain)
 {
-    if (position>size || position <1)
+    if (position > size || position < 1)
     {
         printf("Position out of bounds");
         return;
     }
     strcpy(arr[position - 1].status, status);
-    arr[position-1].maintenance_req = maintain;
-
+    arr[position - 1].maintenance_req = maintain;
 }
 
-void update_by_id(struct machine arr[] ,int id,int size, char status[20] , int maintain)
+void update_by_id(struct machine arr[], int id, int size, char status[20], int maintain)
 {
-    for(int i =0;i<size;i++){
-        if(id == arr[i].id){
-            arr[i].maintenance_req = maintain ;
-            strcpy(arr[i].status,status);
+    for (int i = 0; i < size; i++)
+    {
+        if (id == arr[i].id)
+        {
+            arr[i].maintenance_req = maintain;
+            strcpy(arr[i].status, status);
             printf("Machine updated successfully");
             return;
         }
@@ -120,36 +122,45 @@ void update_by_id(struct machine arr[] ,int id,int size, char status[20] , int m
     printf("Id not found.");
 }
 
-void bubble_sort_by_id(struct machine arr[], int size){
-    int i,j;
+void bubble_sort_by_id(struct machine arr[], int size)
+{
+    int i, j;
     struct machine temp;
     bool swapped = false;
 
-    for(i=0;i<size-1;i++){
+    for (i = 0; i < size - 1; i++)
+    {
         swapped = false;
-        for(j=0;j<size-1-i;j++){
-            if(arr[j].id> arr[j+1].id){
+        for (j = 0; j < size - 1 - i; j++)
+        {
+            if (arr[j].id > arr[j + 1].id)
+            {
                 temp = arr[j];
-                arr[j]= arr[j+1];
-                arr[j+1]  = temp;
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
                 swapped = true;
             }
         }
-        if (swapped==false){
+        if (swapped == false)
+        {
             break;
         }
     }
 }
 
-void show_maintenance(struct machine arr[],int size){
+void show_maintenance(struct machine arr[], int size)
+{
     int found = 0;
-    for (int i=0 ; i<size ;i++){
-        if(arr[i].maintenance_req==1){
-            printf("Machine ID : %d \n",arr[i].id);
+    for (int i = 0; i < size; i++)
+    {
+        if (arr[i].maintenance_req == 1)
+        {
+            printf("Machine ID : %d \n", arr[i].id);
             found++;
         }
     }
-    if(found == 0){
+    if (found == 0)
+    {
         printf("No machines need maintenance.\n");
     }
 }
