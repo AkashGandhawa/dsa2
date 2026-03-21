@@ -74,19 +74,22 @@ void display_secondary();
 // ==========================================
 // 4. Production Floor (Array) - Dulaksha's Part
 // ==========================================
-/*
+
 #define MAX_MACHINES 100
-typedef struct {
-    int machine_id;
+typedef struct machine{
+    int id ;
     char status[20];
     int maintenance_req;
 } Machine;
 
-void add_machine(int id, char* status, int req);
-void update_machine(int id, char* status, int req);
-void delete_machine(int id);
-void display_machines();
-*/
+int insert_at( struct machine arr[],int position ,int id, char status[20] , int maintain , int size , int max );
+int delete_by_position(struct machine arr[], int position, int size );
+int delete_by_id(struct machine arr[] ,int id, int size);
+void traverse(struct machine arr[] ,int size);
+void update_by_position(struct machine arr[] ,int position, int size,char status[20] , int maintain);
+void update_by_id(struct machine arr[] ,int id,int size, char status[20] , int maintain);
+void bubble_sort_by_id(struct machine arr[], int size);
+void show_maintenance(struct machine arr[],int size);
 
 // ==========================================
 // 5. Sewing Operator (Linked List) - Akash's Part
