@@ -2,20 +2,8 @@
 #include <stdlib.h>
 #include "factory.h"
 
-// typedef struct Order{
-//     int order_id;
-//     int receiver_id;
-//     int priority;
-//     char item_type;
-//     int item_count;
-//     float price;
-// struct Order* next;
-// }Order;
-
-struct Order *orderhead = NULL;
-
 // Function to create a new order with the given order details
-void AddOrder(int order_id, int receiver_id, int priority, char item_type, int item_count, float price)
+void add_order(int order_id, int receiver_id, int priority, char item_type, int item_count, float price)
 {
     Order *newOrder = (struct Order *)malloc(sizeof(struct Order));
     if (newOrder == NULL)
@@ -36,7 +24,7 @@ void AddOrder(int order_id, int receiver_id, int priority, char item_type, int i
 //    -----------------------------------------------------
 
 // delete an order from the linked list based on the order_id
-void DeleteOrder(int order_id)
+void delete_order(int order_id)
 {
     if (orderhead == NULL)
     {
@@ -70,7 +58,7 @@ void DeleteOrder(int order_id)
 // -----------------------------------------------------
 
 // update an order in the linked list based on the order_id
-void UpdateOrder(int order_id, int receiver_id, int priority, char item_type, int item_count, float price)
+void update_order(int order_id, int receiver_id, int priority, char item_type, int item_count, float price)
 {
     Order *current = orderhead;
     while (current != NULL)
@@ -92,7 +80,7 @@ void UpdateOrder(int order_id, int receiver_id, int priority, char item_type, in
 // ------------------------------------------------------
 
 // display all the orders in the linked list
-void DisplayOrders()
+void display_orders()
 {
     struct Order *current = orderhead;
     if (current == NULL)
@@ -109,7 +97,7 @@ void DisplayOrders()
 };
 // ------------------------------------------------------
 
-void SortByPriority()
+void sort_orders_by_priority()
 {
     if (orderhead == NULL)
     {

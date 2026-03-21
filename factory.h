@@ -71,6 +71,8 @@ typedef struct SecondaryStockItem
     struct SecondaryStockItem *prev, *next;
 } SecondaryStockItem;
 
+extern SecondaryStockItem *secondary_head;
+
 void add_secondary_item(char *mat, float stock);
 void update_secondary_item(char *mat, float new_stock);
 void delete_secondary_item(char *mat);
@@ -129,22 +131,23 @@ void sort_sewing_operators_by_completed();
 // 6. Order Dispatch (Linked List) - Prabuddha
 // ==========================================
 
-typedef struct Order
-{
+typedef struct Order{
     int order_id;
-    char receiver[50];
+    int receiver_id;
     int priority;
-    char item[30];
+    char item_type;
     int item_count;
     float price;
-    struct Order *next;
-} Order;
+struct Order* next;
+}Order;
 
-// Note: Sort by priority
-void add_order(int id, char *rec, int priority, char *item, int count, float price);
-void update_order(int id, int count);
-void delete_order(int id);
+extern struct Order *orderhead;
+
+void add_order(int order_id, int receiver_id, int priority, char item_type, int item_count, float price);
+void update_order(int order_id, int receiver_id, int priority, char item_type, int item_count, float price);
+void delete_order(int order_id);
 void display_orders();
+void sort_orders_by_priority();
 
 // ==========================================
 // 7. Security (Array) - Yasiru's Part
