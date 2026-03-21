@@ -119,7 +119,7 @@ void add_order(int id, char* rec, int priority, char* item, int count, float pri
 void update_order(int id, int count);
 void delete_order(int id);
 void display_orders();
-*/
+
 
 // ==========================================
 // 7. Security (Array) - Yasiru's Part
@@ -137,6 +137,6 @@ void add_guard(int id, int active, char* point, char* shift);
 void update_guard(int id, int active, char* point, char* shift);
 void delete_guard(int id);
 void display_security();
-*/
+
 
 #endif
