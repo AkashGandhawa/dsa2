@@ -92,14 +92,14 @@ typedef struct machine
     int maintenance_req;
 } Machine;
 
-int insert_at(struct machine arr[], int position, int id, char status[20], int maintain, int size, int max);
-int delete_by_position(struct machine arr[], int position, int size);
-int delete_by_id(struct machine arr[], int id, int size);
-void traverse(struct machine arr[], int size);
-void update_by_position(struct machine arr[], int position, int size, char status[20], int maintain);
-void update_by_id(struct machine arr[], int id, int size, char status[20], int maintain);
-void bubble_sort_by_id(struct machine arr[], int size);
-void show_maintenance(struct machine arr[], int size);
+int insert_at(Machine arr[], int position, int id, char status[20], int maintain, int size, int max);
+int delete_by_position(Machine arr[], int position, int size);
+int delete_by_id(Machine arr[], int id, int size);
+void traverse(Machine arr[], int size);
+void update_by_position(Machine arr[], int position, int size, char status[20], int maintain);
+void update_by_id(Machine arr[], int id, int size, char status[20], int maintain);
+void bubble_sort_by_id(Machine arr[], int size);
+void show_maintenance(Machine arr[], int size);
 
 // ==========================================
 // 5. Sewing Operator (Linked List) - Akash

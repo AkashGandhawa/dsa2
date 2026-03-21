@@ -74,11 +74,85 @@ void secondary_stock_menu()
     printf("Space for Sasadhara to add Add/Delete/Update logic.\n");
 }
 
+
+Machine machines[MAX_MACHINES];
+int machine_size = 0;
 void production_floor_menu()
 {
+    int subChoice;
+
     printf("\n--- Production Floor ---\n");
-    // TODO: add production floor menu and logic here
-    printf("Space for Dulaksha to add Add/Delete/Update logic.\n");
+    printf("1. Insert Machine\n");
+    printf("2. Delete by Position\n");
+    printf("3. Delete by ID\n");
+    printf("4. Update by Position\n");
+    printf("5. Update by ID\n");
+    printf("6. Display Machines\n");
+    printf("7. Sort by ID\n");
+    printf("8. Show Maintenance Required\n");
+    printf("9. Back\n");
+    printf("Choice: ");
+    scanf("%d", &subChoice);
+
+    if (subChoice == 1)
+    {
+        int id, maintain, position;
+        char status[20];
+
+        printf("Enter Position, ID, Status, Maintenance(0/1): ");
+        scanf("%d %d %s %d", &position, &id, status, &maintain);
+
+        machine_size = insert_at(machines, position, id, status, maintain, machine_size, MAX_MACHINES);
+    }
+    else if (subChoice == 2)
+    {
+        int position;
+        printf("Enter Position: ");
+        scanf("%d", &position);
+
+        machine_size = delete_by_position(machines, position, machine_size);
+    }
+    else if (subChoice == 3)
+    {
+        int id;
+        printf("Enter ID: ");
+        scanf("%d", &id);
+
+        machine_size = delete_by_id(machines, id, machine_size);
+    }
+    else if (subChoice == 4)
+    {
+        int position, maintain;
+        char status[20];
+
+        printf("Enter Position, New Status, Maintenance(0/1): ");
+        scanf("%d %s %d", &position, status, &maintain);
+
+        update_by_position(machines, position, machine_size, status, maintain);
+    }
+    else if (subChoice == 5)
+    {
+        int id, maintain;
+        char status[20];
+
+        printf("Enter ID, New Status, Maintenance(0/1): ");
+        scanf("%d %s %d", &id, status, &maintain);
+
+        update_by_id(machines, id, machine_size, status, maintain);
+    }
+    else if (subChoice == 6)
+    {
+        traverse(machines, machine_size);
+    }
+    else if (subChoice == 7)
+    {
+        bubble_sort_by_id(machines, machine_size);
+        
+    }
+    else if (subChoice == 8)
+    {
+        show_maintenance(machines, machine_size);
+    }
 }
 
 void sewing_operator_menu()

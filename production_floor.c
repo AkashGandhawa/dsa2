@@ -146,6 +146,7 @@ void bubble_sort_by_id(struct machine arr[], int size)
             break;
         }
     }
+    printf("Sorted successfully.\n");
 }
 
 void show_maintenance(struct machine arr[], int size)
