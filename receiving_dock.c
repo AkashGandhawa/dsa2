@@ -258,6 +258,7 @@ void groupBy(const Queue *queue, char type)
             }
             printf("\n");
         }
+        printf("\n");
     }
 
     freeGroups(groups, groupCount);
