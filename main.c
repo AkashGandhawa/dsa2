@@ -22,6 +22,12 @@ int main() {
     char mat[30];
     float stock;
 
+    //Receiving Dock Variables
+    int t_id,priority;
+    char g_key;
+    char supplier[50],material[50],date[20];
+    bool con = true;
+    
     while(1) {
         show_menu();
         printf("Enter choice: ");
@@ -33,9 +39,47 @@ int main() {
         
         switch(choice) {
             case 1: // Receiving Dock - Themiya
-                printf("\n--- Receiving Dock (Placeholder) ---\n");
-                printf("Space for Themiya to add Enqueue/Dequeue logic.\n");
-                // Example call: enqueue_truck(...);
+                printf("\n--- Receiving Dock ---\n");
+                printf("1. Enqueue a Truck\n2. Dequeue a Truck\n3. Display Dock\n4. Sort by Priority\n5. Group Trucks\n0. Exit\n\n");
+
+                Queue queue;
+                initialize_queue(&queue);
+
+                while(con){
+                    printf("Enter the Subchoice: ");
+                    scanf("%d", &subChoice);
+
+                    switch(subChoice){
+                        case 1:
+                            printf("Enter the Truck Details (ID, Priority, Supplier, Material, Date):\n");
+                            scanf("%d %d %s %s %s", &t_id, &priority, supplier, material, date);
+                            enqueue_truck(&queue, t_id, priority, supplier, material, date);
+                            printf("\n");
+                            break;
+                        case 2:
+                            dequeue_truck(&queue);
+                            printf("\n");
+                            break;
+                        case 3:
+                            display_dock(&queue);
+                            break;
+                        case 4:
+                            sortByPriority(&queue);
+                            printf("\n");
+                            break;
+                        case 5:
+                            printf("Enter the Grouping Selector (P-Priority, S-Supplier, M-Material): ");
+                            scanf("%c", &g_key);
+                            groupBy(&queue, g_key);
+                            break;
+                        case 0:
+                            con = false;
+                            printf("\n");
+                            break;
+                        default:
+                            printf("Invalid Choice.\n\n");
+                        }
+                    }
                 break;
 
             case 2: // Main Warehouse - Anushka
