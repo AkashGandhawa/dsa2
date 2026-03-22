@@ -127,3 +127,35 @@ void count_secondary_items()
     printf("Total Material Types in Stock: %d\n", count);
     printf("========================================\n");
 }
+
+// 6. Find and display the materials with max and min stock
+void find_max_min_stock() {
+    if (secondary_head == NULL) {
+        printf("\n========================================\n");
+        printf("Stock is currently empty. Cannot find max or min.\n");
+        printf("========================================\n");
+        return;
+    }
+
+    // Assume the first item is both the max and min to start
+    SecondaryStockItem* temp = secondary_head;
+    SecondaryStockItem* max_item = temp;
+    SecondaryStockItem* min_item = temp;
+
+    // Traverse the rest of the list
+    while (temp != NULL) {
+        if (temp->stock_kg > max_item->stock_kg) {
+            max_item = temp;
+        }
+        if (temp->stock_kg < min_item->stock_kg) {
+            min_item = temp;
+        }
+        temp = temp->next;
+    }
+
+    printf("\n========================================\n");
+    printf("--- STOCK EXTREMES ---\n");
+    printf("Highest Stock: %s (%.2f kg)\n", max_item->material_type, max_item->stock_kg);
+    printf("Lowest Stock:  %s (%.2f kg)\n", min_item->material_type, min_item->stock_kg);
+    printf("========================================\n");
+}
