@@ -1,203 +1,49 @@
-#include "factory.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-// --- Menu Functions ---
-void show_menu()
-{
-    printf("\n--- Garment Factory Management System (Group Project) ---\n");
-    printf("1. Receiving Dock (Themiya - Queue)\n");
-    printf("2. Main Warehouse (Anushka - Doubly Linked List)\n");
-    printf("3. Secondary Stock (Sasadhara - Doubly Linked List)\n");
-    printf("4. Production Floor (Dulaksha - Array)\n");
-    printf("5. Sewing Operator (Akash - Linked List)\n");
-    printf("6. Order Dispatch (Prabuddha - Linked List)\n");
-    printf("7. Security (Yasiru - Array)\n");
-    printf("0. Exit\n");
-}
-
-void clear_input()
-{
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF)
-        ;
-}
-
-// --- Case Functions ---
 void receiving_dock_menu()
 {
     printf("\n--- Receiving Dock ---\n");
     // TODO: add receiving dock menu and logic here
-    printf("Space for Themiya to add Enqueue/Dequeue logic.\n");
-    // Example call: enqueue_truck(...);
-}
+    // Integrated Themiya's enqueue/dequeue logic from main branch
 
-void warehouse_menu()
-{
-    int subChoice, id;
-    char mat[30];
-    float stock;
-
-    //Receiving Dock Variables
-    int t_id,priority;
+    int subChoice, t_id, priority;
     char g_key;
-    char supplier[50],material[50],date[20];
-    bool con = true;
-    
-    while(1) {
-        show_menu();
-        printf("Enter choice: ");
-        if (scanf("%d", &choice) != 1)
+    char supplier[50], material[50], date[20];
+    int con = 1;
+
+    Queue queue;
+    initialize_queue(&queue);
+
+    while (con)
+    {
+        printf("1. Enqueue a Truck\n2. Dequeue a Truck\n3. Display Dock\n4. Sort by Priority\n5. Group Trucks\n0. Back\n\n");
+        printf("Enter the Subchoice: ");
+        scanf("%d", &subChoice);
+
+        switch (subChoice)
         {
-            printf("Invalid input.\n");
-            clear_input();
-            continue;
-        }
-        
-        switch(choice) {
-            case 1: // Receiving Dock - Themiya
-                printf("\n--- Receiving Dock ---\n");
-                printf("1. Enqueue a Truck\n2. Dequeue a Truck\n3. Display Dock\n4. Sort by Priority\n5. Group Trucks\n0. Exit\n\n");
-
-                Queue queue;
-                initialize_queue(&queue);
-
-                while(con){
-                    printf("Enter the Subchoice: ");
-                    scanf("%d", &subChoice);
-
-                    switch(subChoice){
-                        case 1:
-                            printf("Enter the Truck Details (ID, Priority, Supplier, Material, Date):\n");
-                            scanf("%d %d %s %s %s", &t_id, &priority, supplier, material, date);
-                            enqueue_truck(&queue, t_id, priority, supplier, material, date);
-                            printf("\n");
-                            break;
-                        case 2:
-                            dequeue_truck(&queue);
-                            printf("\n");
-                            break;
-                        case 3:
-                            display_dock(&queue);
-                            break;
-                        case 4:
-                            sortByPriority(&queue);
-                            printf("\n");
-                            break;
-                        case 5:
-                            printf("Enter the Grouping Selector (P-Priority, S-Supplier, M-Material): ");
-                            scanf("%c", &g_key);
-                            groupBy(&queue, g_key);
-                            break;
-                        case 0:
-                            con = false;
-                            printf("\n");
-                            break;
-                        default:
-                            printf("Invalid Choice.\n\n");
-                        }
-                    }
-                break;
-
-            case 2: // Main Warehouse - Anushka
-                printf("\n--- Main Warehouse ---\n");
-                printf("1. Add Item\n2. Update Stock\n3. Delete Item\n4. Display\n5. Back\nChoice: ");
-                scanf("%d", &subChoice);
-                if (subChoice == 1) {
-                    printf("Slot No, Material, Stock(kg): ");
-                    scanf("%d %s %f", &id, mat, &stock);
-                    add_warehouse_item(id, mat, stock);
-                } else if (subChoice == 2) {
-                    printf("Slot No, New Stock: ");
-                    scanf("%d %f", &id, &stock);
-                    update_warehouse_item(id, stock);
-                } else if (subChoice == 3) {
-                    printf("Slot No: ");
-                    scanf("%d", &id);
-                    delete_warehouse_item(id);
-                } else if (subChoice == 4) display_warehouse();
-                break;
-
-            case 3: // Secondary Stock - Sasadhara
-                printf("\n--- Secondary Stock ---\n");
-                void secondary_stock_menu()
-                {
-                    int subChoice;
-                    char mat[30];
-                    float stock;
-                
-                    printf("\n--- Secondary Stock ---\n");
-                    printf("1. Add Material\n");
-                    printf("2. Update Stock\n");
-                    printf("3. Delete Material\n");
-                    printf("4. Display Inventory\n");
-                    printf("5. Count Total Material Types\n");
-                    printf("6. Find Max/Min Stock\n"); 
-                    printf("7. Back\n");               
-                    printf("Choice: ");
-                    scanf("%d", &subChoice);
-                
-                    if (subChoice == 1) {
-                        printf("Enter Material Type (one word) and Stock(kg): ");
-                        scanf("%s %f", mat, &stock);
-                        add_secondary_item(mat, stock);
-                    }
-                    else if (subChoice == 2) {
-                        printf("Enter Material Type to Update and New Stock(kg): ");
-                        scanf("%s %f", mat, &stock);
-                        update_secondary_item(mat, stock);
-                    }
-                    else if (subChoice == 3) {
-                        printf("Enter Material Type to Delete: ");
-                        scanf("%s", mat);
-                        delete_secondary_item(mat);
-                    }
-                    else if (subChoice == 4) {
-                        display_secondary();
-                    }
-                    else if (subChoice == 5) {
-                        count_secondary_items();
-                    }
-                    else if (subChoice == 6) {
-                        find_max_min_stock(); 
-                    }
-                    else if (subChoice == 7) {
-                        return; 
-                    }
-                    else {
-                        printf("Invalid choice! Returning to main menu...\n");
-                    }
-                }
-                break;
-
-            case 4: // Production Floor - Dulaksha
-                printf("\n--- Production Floor (Placeholder) ---\n");
-                printf("Space for Dulaksha to add Add/Delete/Update logic.\n");
-                break;
-
-            case 5: // Sewing Operator - Akash
-                printf("\n--- Sewing Operator (Placeholder) ---\n");
-                printf("Space for Akash to add Add/Delete/Update (Sort by pieces) logic.\n");
-                break;
-
-            case 6: // Order Dispatch - Prabuddha
-                printf("\n--- Order Dispatch (Placeholder) ---\n");
-                printf("Space for Prabuddha to add Add/Delete/Update (Sort by priority) logic.\n");
-                break;
-
-            case 7: // Security - Yasiru
-                printf("\n--- Security (Placeholder) ---\n");
-                printf("Space for Yasiru to add Add/Delete/Update logic.\n");
-                break;
-
-            case 0: 
-                printf("Exiting system...\n");
-                exit(0);
-
-            default: 
-                printf("Invalid choice. Please select 0-7.\n");
+        case 1:
+            printf("Enter the Truck Details (ID, Priority, Supplier, Material, Date):\n");
+            scanf("%d %d %s %s %s", &t_id, &priority, supplier, material, date);
+            enqueue_truck(&queue, t_id, priority, supplier, material, date);
+            break;
+        case 2:
+            dequeue_truck(&queue);
+            break;
+        case 3:
+            display_dock(&queue);
+            break;
+        case 4:
+            sortByPriority(&queue);
+            break;
+        case 5:
+            printf("Enter the Grouping Selector (P-Priority, S-Supplier, M-Material): ");
+            scanf(" %c", &g_key); // note space before %c to consume newline
+            groupBy(&queue, g_key);
+            break;
+        case 0:
+            con = 0; // exit submenu
+            break;
+        default:
+            printf("Invalid Choice.\n");
         }
     }
-    return 0;
 }
