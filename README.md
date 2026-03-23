@@ -55,7 +55,7 @@ Simple program that models a system of an textile manufacturing company to bette
 ## 👥 Team members
 
 - [@AkashGandhawa](https://github.com/AkashGandhawa)
-- [@SasadharaYT](hhttps://github.com/SasadharaYT)
+- [@SasadharaYT](https://github.com/SasadharaYT)
 - [@TT-07](https://github.com/TT-07)
 - [@jyubon](https://github.com/jyubon)
 - [@dulakshadulan](https://github.com/dulakshadulan)
