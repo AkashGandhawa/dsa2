@@ -1,0 +1,50 @@
+# depslib dependency file v1.0
+1774247402 source:d:\title\main.c
+	"factory.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1774246856 d:\title\factory.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+
+1774088724 source:d:\title\operator.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"factory.h"
+
+1774246557 source:d:\title\order_dispatch.c
+	<stdio.h>
+	<stdlib.h>
+	"factory.h"
+
+1774088724 source:d:\title\production_floor.c
+	<string.h>
+	<stdio.h>
+	<stdbool.h>
+	"factory.h"
+
+1774088724 source:d:\title\receiving_dock.c
+	"factory.h"
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<string.h>
+	<ctype.h>
+
+1774246357 source:d:\title\secondary_stock.c
+	"factory.h"
+
+1774097352 source:d:\title\warehouse.c
+	"factory.h"
+
+1774097611 source:d:\title\guard.c
+	<stdio.h>
+	<stdbool.h>
+	<string.h>
+	<windows.h>
+
