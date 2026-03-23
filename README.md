@@ -25,7 +25,7 @@ Simple program that models a system of an textile manufacturing company to bette
 ### 4. Production Floor
 * Data Structure: **Array**
 * Data Elements: `{machine_id, status, maintainance_req}`
-* Special Task: Sort by `machine_id`
+* Special Task: Sort by `machine_id`, Show list of machines requiring maintenance based on `maintenance_req`
 
 ### 5. Sewing Operator
 * Data Structure: **Linked List**

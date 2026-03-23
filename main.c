@@ -160,6 +160,7 @@ void warehouse_menu()
         search_warehouse_item(mat);
         break;
     case 6:
+    {
         int criteria, order;
         printf("Sort by: 1=Slot No, 2=Material, 3=Stock\n");
         scanf("%d", &criteria);
@@ -167,6 +168,7 @@ void warehouse_menu()
         scanf("%d", &order);
         sort_warehouse_items(criteria, order);
         break;
+    }
     case 7:
         return; // Back to main menu
     default:
