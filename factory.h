@@ -57,7 +57,7 @@ extern WarehouseItem *warehouse_head;
 
 void add_warehouse_item(int slot, char *mat, float stock);
 void update_warehouse_item(int slot, float new_stock);
-void delete_warehouse_item(int slot);
+void delete_warehouse_item(int slot, int *con);
 void display_warehouse();
 void search_warehouse_item(char *query);
 void sort_warehouse_items(int criteria, int order);

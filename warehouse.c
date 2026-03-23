@@ -38,8 +38,15 @@ void update_warehouse_item(int slot, float new_stock)
 }
 
 // Function to delete an item from a specific slot
-void delete_warehouse_item(int slot)
+// If slot == -1, signal to exit the loop
+void delete_warehouse_item(int slot, int *con)
 {
+    if (slot == -1)
+    {
+        *con = 0; // stop the loop
+        return;
+    }
+
     WarehouseItem *curr = head;
     while (curr != NULL)
     {
@@ -83,4 +90,81 @@ void display_warehouse()
         curr = curr->next;
     }
     printf("----------------------------------------------------\n");
+}
+
+// Function to search for a warehouse item by material type
+void search_warehouse_item(char *query)
+{
+    WarehouseItem *curr = head;
+    int found = 0;
+
+    while (curr != NULL)
+    {
+        if (strcmp(curr->material_type, query) == 0)
+        {
+            printf("Found: Slot No: %d | Material: %s | Stock: %.2f kg\n",
+                   curr->slot_no, curr->material_type, curr->stock_kg);
+            found = 1;
+        }
+        curr = curr->next;
+    }
+
+    if (!found)
+    {
+        printf("No item found with material type '%s'.\n", query);
+    }
+}
+
+// Function to sort warehouse items by criteria and order
+void sort_warehouse_items(int criteria, int order)
+{
+    if (head == NULL || head->next == NULL)
+    {
+        printf("Warehouse has too few items to sort.\n");
+        return;
+    }
+
+    int swapped;
+    WarehouseItem *ptr;
+    WarehouseItem *last = NULL;
+
+    do
+    {
+        swapped = 0;
+        ptr = head;
+
+        while (ptr->next != last)
+        {
+            int cmp = 0;
+            if (criteria == 1) // slot number
+                cmp = (ptr->slot_no - ptr->next->slot_no);
+            else if (criteria == 2) // material type
+                cmp = strcmp(ptr->material_type, ptr->next->material_type);
+            else if (criteria == 3) // stock
+                cmp = (ptr->stock_kg > ptr->next->stock_kg) ? 1 : (ptr->stock_kg < ptr->next->stock_kg ? -1 : 0);
+
+            if ((order == 1 && cmp > 0) || (order == -1 && cmp < 0))
+            {
+                // Swap the contents of the nodes
+                int tempSlot = ptr->slot_no;
+                float tempStock = ptr->stock_kg;
+                char tempMat[30];
+                strcpy(tempMat, ptr->material_type);
+
+                ptr->slot_no = ptr->next->slot_no;
+                ptr->stock_kg = ptr->next->stock_kg;
+                strcpy(ptr->material_type, ptr->next->material_type);
+
+                ptr->next->slot_no = tempSlot;
+                ptr->next->stock_kg = tempStock;
+                strcpy(ptr->next->material_type, tempMat);
+
+                swapped = 1;
+            }
+            ptr = ptr->next;
+        }
+        last = ptr;
+    } while (swapped);
+
+    printf("Warehouse items sorted successfully.\n");
 }
