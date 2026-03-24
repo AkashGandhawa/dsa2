@@ -46,7 +46,7 @@ int delete_by_position(Machine arr[], int position, int size)
     if (size ==0)
     {
         printf("No machines to delete.\n");
-        return;
+        return size;
     }
     if (position > size || position < 1)
     {
@@ -68,7 +68,7 @@ int delete_by_id(Machine arr[], int id, int size)
     if (size ==0)
     {
         printf("No machines to delete.\n");
-        return;
+        return size;
     }
     for (int i = 0; i < size; i++)
     {
