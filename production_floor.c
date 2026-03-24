@@ -43,7 +43,7 @@ int insert_at(Machine arr[], int position, int id, char status[20], int maintain
 
 int delete_by_position(Machine arr[], int position, int size)
 {
-    if (size ==0)
+    if (size == 0)
     {
         printf("No machines to delete.\n");
         return size;
@@ -65,7 +65,7 @@ int delete_by_position(Machine arr[], int position, int size)
 
 int delete_by_id(Machine arr[], int id, int size)
 {
-    if (size ==0)
+    if (size == 0)
     {
         printf("No machines to delete.\n");
         return size;
@@ -90,7 +90,7 @@ int delete_by_id(Machine arr[], int id, int size)
 
 void traverse(Machine arr[], int size)
 {
-    if (size ==0)
+    if (size == 0)
     {
         printf("No machines to display.\n");
         return;
@@ -114,7 +114,7 @@ void traverse(Machine arr[], int size)
 
 void update_by_position(Machine arr[], int position, int size, char status[20], int maintain)
 {
-    if (size ==0)
+    if (size == 0)
     {
         printf("No machines to update.\n");
         return;
@@ -130,7 +130,7 @@ void update_by_position(Machine arr[], int position, int size, char status[20], 
 
 void update_by_id(Machine arr[], int id, int size, char status[20], int maintain)
 {
-    if (size ==0)
+    if (size == 0)
     {
         printf("No machines to update.\n");
         return;
@@ -150,7 +150,7 @@ void update_by_id(Machine arr[], int id, int size, char status[20], int maintain
 
 void bubble_sort_by_id(Machine arr[], int size)
 {
-    if (size ==0)
+    if (size == 0)
     {
         printf("No machines to sort.\n");
         return;
@@ -182,7 +182,7 @@ void bubble_sort_by_id(Machine arr[], int size)
 
 void show_maintenance(Machine arr[], int size)
 {
-    if (size ==0)
+    if (size == 0)
     {
         printf("No machines to display.\n");
         return;
