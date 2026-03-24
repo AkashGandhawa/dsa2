@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "factory.h"
+#include <string.h>
 
 Order *order_head = NULL;
 
@@ -15,7 +16,7 @@ void add_order(int order_id, int receiver_id, int priority, char *item_type, int
     newOrder->order_id = order_id;
     newOrder->receiver_id = receiver_id;
     newOrder->priority = priority;
-    newOrder->item_type = item_type;
+    strcpy(newOrder->item_type,item_type);
     newOrder->item_count = item_count;
     newOrder->price = price;
 
@@ -69,7 +70,7 @@ void update_order(int order_id, int receiver_id, int priority, char *item_type, 
         {
             current->receiver_id = receiver_id;
             current->priority = priority;
-            current->item_type = item_type;
+            strcpy(current->item_type,item_type);
             current->item_count = item_count;
             current->price = price;
             printf("Order updated successfully\n");
@@ -126,14 +127,14 @@ void sort_orders_by_priority()
         curr->order_id = min->order_id;
         curr->receiver_id = min->receiver_id;
         curr->priority = min->priority;
-        curr->item_type = min->item_type;
+        strcpy(curr->item_type,min->item_type);
         curr->item_count = min->item_count;
         curr->price = min->price;
 
         min->order_id = temp.order_id;
         min->receiver_id = temp.receiver_id;
         min->priority = temp.priority;
-        min->item_type = temp.item_type;
+        strcpy(min->item_type,temp.item_type);
         min->item_count = temp.item_count;
         min->price = temp.price;
 
